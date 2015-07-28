@@ -6,8 +6,7 @@ var babelify = require("babelify");
 var browserify = require('browserify');
 var eslint = require('gulp-eslint');
 
-var path = 'src/**/*',
-    application = './src/application.jsx';
+var application = './src/application.jsx';
 
 gulp.task("prod", ['lint'], function () {
   browserify({
@@ -33,7 +32,7 @@ gulp.task("dev", function() {
 });
 
 gulp.task('lint', function () {
-  return gulp.src([path])
+  return gulp.src(['./**/*.jsx', './**/*.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failOnError());
