@@ -16,6 +16,8 @@
     ]
   },
   "globals": {
-  	"document": true
+  	"document": true,
+    "clearInterval": true,
+    "setInterval": true
   }
 }

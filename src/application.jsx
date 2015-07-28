@@ -14,28 +14,34 @@ class App extends React.Component {
 			sleeping: false,
 			running: false
 		};
-		this.onClick = this.onClick.bind(this);
+		this.onBegin = this.onBegin.bind(this);
 		this.countdown = this.countdown.bind(this);
+		this.reset = this.reset.bind(this);
 	}
-	componentWillUnmount() {
-    clearInterval(this.interval)
-  }
-  countdown() {
-  	if (this.state.timer > 0) {
-	  	this.setState({timer: this.state.timer - 1});
-	  } else {
-	  	clearInterval(this.interval)
-	  }
-  }
-	onClick() {
+	countdown() {
+		if (this.state.timer > 0 && this.state.running) {
+			this.setState({timer: this.state.timer - 1});
+		}
+	}
+	reset() {
+		clearInterval(this.interval);
+		this.setState({
+			running: false,
+			timer: 300
+		});
+	}
+	onBegin() {
 		if (this.state.running) {
-			clearInterval(this.interval)
+			clearInterval(this.interval);
+			this.setState({running: false});
 		} else {
-			this.interval = setInterval(this.countdown, 100);
+			this.interval = setInterval(this.countdown, 1000);
+			this.setState({running: true});
 		}
 	}
 	render() {
-		let dayNightIndicator = this.state.sleeping ? "Night" : "Day";
+		let dayNightIndicator = this.state.sleeping ? 'Night' : 'Day';
+		let beginOrResume = this.state.timer < 300 ? 'Resume' : 'Begin Day';
 		return (
 			<div>
 				<div className='day-night-indicator'>
@@ -47,9 +53,12 @@ class App extends React.Component {
 				<div className='timer-control'>
 					<button
 						className='button-begin'
-						value='start'
-						onClick={this.onClick}>
-						Begin Day
+						onClick={this.onBegin}>
+						{this.state.running ? 'Pause' : beginOrResume}
+					</button>
+					<button
+						onClick={this.reset}>
+						Reset
 					</button>
 				</div>
 			</div>
