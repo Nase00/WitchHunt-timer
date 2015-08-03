@@ -13,7 +13,7 @@ export default class Day extends React.Component {
   render() {
     const wellStyles = {
       display: 'block',
-      margin: '100px auto 100px',
+      margin: '50px auto 0',
       height: '400'
     };
     const {
@@ -28,8 +28,8 @@ export default class Day extends React.Component {
           <Col xs={14} md={10}>
             <Well style={wellStyles}>
               <div className='vcenter'>
-                <h1 className='counter'>
-                  Day <Label>{day}</Label>
+                <h1 className='day-counter'>
+                  Day <Label className='label-day'>{day}</Label>
                 </h1>
               </div>
             </Well>

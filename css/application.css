@@ -21,15 +21,27 @@ html, body {
   width: 100%;
 }
 .label {
-	position: fixed;
-	margin: 40px;
-	padding: 20px 130px 20px 30px;
+	padding: 20px 60px;
 	height: 250px;
-	width: 60px;
-	font: normal 180px Helvetica, serif;
+	width: 20px;
 }
-h1.counter {
-	margin: 20px 140px auto 8%;
-	font: normal 250px 'Cinzel', serif;
+.label-day {
+	font: normal 280px Helvetica, serif;
 }
-
+.label-timer {
+	font: normal 140px Helvetica, serif;
+}
+h1 {
+	margin: 20px 10px auto 8%;
+	text-align: center;
+}
+h1.day-counter {
+	font: normal 200px 'Cinzel', serif;
+}
+h1.timer {
+	display: block;
+	font: normal 80px 'Cinzel', serif;
+}
+.progress {
+	margin: 40px;
+}
