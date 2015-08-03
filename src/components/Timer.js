@@ -53,7 +53,6 @@ export default class Timer extends React.Component {
     return seconds / 300 * 100;
   }
   render() {
-    let dayNightIndicator = this.state.sleeping ? 'Night' : 'Day';
     let beginOrResume = this.state.timer < 300 ? 'Resume' : 'Begin Day';
     const wellStyles = {
       display: 'block',

@@ -1,47 +1,56 @@
 @import url(http://fonts.googleapis.com/css?family=Cinzel);
 @import url(http://fonts.googleapis.com/css?family=Cinzel+Decorative);
+
 html, body {
-	background: #1E1E1E;
+  background: #1E1E1E;
+}
+* {
+  border-radius: 0 !important;
 }
 .btn {
-	margin: 4px;
-	font: normal 12px 'Cinzel', serif;
+  margin: 4px;
+  font: normal 12px 'Cinzel', serif;
 }
 .btn-lg {
-	padding: 2px;
-	font: bold 20px 'Cinzel', serif;
-	line-height: 40px;
+  padding: 2px;
+  font: bold 20px 'Cinzel', serif;
+  line-height: 40px;
 }
 .btn-first {
-	margin: 110px 0 0;
+  margin: 120px 0 0;
 }
 .vcenter {
   display: inline-block;
   vertical-align: middle;
   width: 100%;
 }
+.well {
+  background: #000000;
+}
 .label {
-	padding: 20px 60px;
-	height: 250px;
-	width: 20px;
+  padding: 20px 60px;
+  height: 250px;
+  width: 20px;
+  background: #484848;
 }
 .label-day {
-	font: normal 280px Helvetica, serif;
+  font: normal 280px serif;
 }
 .label-timer {
-	font: normal 140px Helvetica, serif;
+  font: normal 140px serif;
 }
 h1 {
-	margin: 20px 10px auto 8%;
-	text-align: center;
+  margin: 20px 10px auto 8%;
+  color: #FFFFFF;
+  text-align: center;
 }
 h1.day-counter {
-	font: normal 200px 'Cinzel', serif;
+  font: normal 200px 'Cinzel', serif;
 }
 h1.timer {
-	display: block;
-	font: normal 80px 'Cinzel', serif;
+  display: block;
+  font: normal 80px 'Cinzel', serif;
 }
 .progress {
-	margin: 40px;
+  margin: 30px;
 }
