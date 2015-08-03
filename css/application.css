@@ -1,0 +1,8 @@
+.btn {
+	margin: 4px;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
