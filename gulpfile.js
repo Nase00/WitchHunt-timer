@@ -6,11 +6,17 @@ var babelify = require("babelify");
 var browserify = require('browserify');
 var eslint = require('gulp-eslint');
 
-var application = './src/application.jsx';
+
+var path = 'src/**/*';
+var application = './src/index.js';
 
 gulp.task("prod", ['lint'], function () {
   browserify({
       entries: application,
+    })
+    .on('error', function (err) {
+      console.log(err.toString());
+      this.emit("end");
     })
     .transform(babelify)
     .bundle()
@@ -39,5 +45,5 @@ gulp.task('lint', function () {
 });
 
 gulp.task('watch', ['dev'], function(){
-	gulp.watch(path, ['dev'])
+	gulp.watch(path, ['dev', 'lint'])
 });

@@ -2,7 +2,7 @@
   "name": "witchhunt-timer",
   "version": "0.0.1",
   "description": "Timer and day/night indicator for WitchHunt/Werewolf",
-  "main": "application.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "moment": "^2.10.6",
-    "react": "^0.13.3"
+    "react": "^0.13.3",
+    "redux": "^0.12.0"
   },
   "devDependencies": {
     "babel-eslint": "^4.0.5",
