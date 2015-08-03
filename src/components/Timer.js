@@ -54,6 +54,7 @@ export default class Timer extends React.Component {
   }
   render() {
     let beginOrResume = this.state.timer < 300 ? 'Resume' : 'Begin Day';
+    let blink = this.state.timer === 0 ? 'blink' : '';
     const wellStyles = {
       display: 'block',
       margin: '30px auto 0',
@@ -66,11 +67,16 @@ export default class Timer extends React.Component {
             <Well style={wellStyles}>
               <div className='vcenter'>
                 <h1 className='timer'>
-                  Time remaining <Label className='label-timer'>{this.timeLeft(this.state.timer)}</Label>
+                  Time remaining 
+                  <Label className='label-timer'>
+                    <span className={blink}>
+                      {this.timeLeft(this.state.timer)}
+                    </span>
+                  </Label>
                 </h1>
                 <ProgressBar
                   striped
-                  active={this.state.timer < 300 && !this.state.paused}
+                  active={this.state.timer < 300 && this.state.running}
                   bsStyle='danger'
                   now={this.fractionize(this.state.timer)}/>
               </div>
