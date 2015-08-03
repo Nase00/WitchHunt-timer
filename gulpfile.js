@@ -6,7 +6,6 @@ var babelify = require("babelify");
 var browserify = require('browserify');
 var eslint = require('gulp-eslint');
 
-
 var path = 'src/**/*';
 var application = './src/index.js';
 
@@ -38,12 +37,12 @@ gulp.task("dev", function() {
 });
 
 gulp.task('lint', function () {
-  return gulp.src(['./**/*.jsx', './**/*.js'])
+  return gulp.src(['./src/**/*.jsx', './src/**/*.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failOnError());
 });
 
 gulp.task('watch', ['dev'], function(){
-	gulp.watch(path, ['dev', 'lint'])
+	gulp.watch(path, ['dev'])
 });
