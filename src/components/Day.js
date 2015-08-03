@@ -13,8 +13,8 @@ export default class Day extends React.Component {
   render() {
     const wellStyles = {
       display: 'block',
-      margin: '0 auto 10px',
-      height: '300'
+      margin: '100px auto 100px',
+      height: '400'
     };
     const {
       incrementDay,
@@ -25,32 +25,39 @@ export default class Day extends React.Component {
     return (
       <Grid>
         <Row className='show-grid'>
-          <Col xs={12} md={8}>
+          <Col xs={14} md={10}>
             <Well style={wellStyles}>
-              <h1 className='vcenter'>Day: <Label>{day}</Label></h1>
+              <div className='vcenter'>
+                <h1 className='counter'>
+                  Day <Label>{day}</Label>
+                </h1>
+              </div>
             </Well>
           </Col>
-          <Col xs={6} md={4}>
+          <Col xs={4} md={2}>
             <Well style={wellStyles}>
               <ButtonToolbar className='vcenter'>
                 <Button
                   bsStyle='primary'
                   onClick={incrementDay}
                   bsSize='large'
+                  className='btn-first'
                   block>
                   Next Day
                 </Button>
                 <Button
                   bsStyle='warning'
-                  bsSize='medium'
-                  onClick={decrementDay}>
+                  bsSize='small'
+                  onClick={decrementDay}
+                  block>
                   Previous Day
                 </Button>
                 <Button
                   bsStyle='danger'
-                  bsSize='medium'
+                  bsSize='small'
                   onClick={resetDay}
-                  placement={'right'}>
+                  placement={'right'}
+                  block>
                   Reset
                 </Button>
               </ButtonToolbar>

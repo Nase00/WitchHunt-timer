@@ -44,5 +44,5 @@ gulp.task('lint', function () {
 });
 
 gulp.task('watch', ['dev'], function(){
-	gulp.watch(path, ['dev', 'lint'])
+	gulp.watch(path, ['dev'])
 });

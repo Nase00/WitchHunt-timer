@@ -1,8 +1,35 @@
+@import url(http://fonts.googleapis.com/css?family=Cinzel);
+@import url(http://fonts.googleapis.com/css?family=Cinzel+Decorative);
+html, body {
+	background: #1E1E1E;
+}
 .btn {
 	margin: 4px;
+	font: normal 12px 'Cinzel', serif;
+}
+.btn-lg {
+	padding: 2px;
+	font: bold 20px 'Cinzel', serif;
+	line-height: 40px;
+}
+.btn-first {
+	margin: 110px 0 0;
 }
 .vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
 }
+.label {
+	position: fixed;
+	margin: 40px;
+	padding: 20px 130px 20px 30px;
+	height: 250px;
+	width: 60px;
+	font: normal 180px Helvetica, serif;
+}
+h1.counter {
+	margin: 20px 140px auto 8%;
+	font: normal 250px 'Cinzel', serif;
+}
+
