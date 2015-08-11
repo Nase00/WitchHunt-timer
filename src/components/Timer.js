@@ -24,18 +24,18 @@ export default class Timer extends React.Component {
     this.onBegin = this.onBegin.bind(this);
     this.countdown = this.countdown.bind(this);
     this.reset = this.reset.bind(this);
+    this.setCustomTime = this.setCustomTime.bind(this);
   }
   countdown() {
     if (this.state.timer > 0 && this.state.running) {
       this.setState({timer: this.state.timer - 1});
     }
   }
-  reset() {
-    clearInterval(this.interval);
-    this.setState({
-      running: false,
-      timer: 300
-    });
+  timeLeft(seconds) {
+    return moment(seconds * 1000).format('mm:ss');
+  }
+  fractionize(seconds) {
+    return seconds / 300 * 100;
   }
   onBegin() {
     if (this.state.running) {
@@ -46,11 +46,21 @@ export default class Timer extends React.Component {
       this.setState({running: true});
     }
   }
-  timeLeft(seconds) {
-    return moment(seconds * 1000).format('mm:ss');
+  reset() {
+    clearInterval(this.interval);
+    this.setState({
+      running: false,
+      timer: 300
+    });
   }
-  fractionize(seconds) {
-    return seconds / 300 * 100;
+  setCustomTime() {
+    let customSeconds = React.findDOMNode(this.refs.customTime).value * 60;
+    let customTimer = this.timeLeft(customSeconds);
+    if (moment(customTimer, "MM:SS", true).isValid()) {
+      this.setState({timer: customSeconds});
+    } else {
+      // TODO: Error handling
+    }
   }
   render() {
     let beginOrResume = this.state.timer < 300 ? 'Resume' : 'Begin Day';
@@ -101,6 +111,21 @@ export default class Timer extends React.Component {
                   block>
                   Reset
                 </Button>
+                <div className="input-group">
+                  <span className="input-group-btn">
+                    <button
+                      onClick={this.setCustomTime}
+                      className="btn btn-default"
+                      type="button">
+                      Set
+                    </button>
+                  </span>
+                  <input
+                    type='text'
+                    ref='customTime'
+                    placeholder='minutes'
+                    className="form-control"/>
+                </div>
               </ButtonToolbar>
             </Well>
           </Col>
