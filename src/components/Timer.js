@@ -17,6 +17,7 @@ export default class Timer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      startTime: 300, // 5 minutes
       timer: 300,
       day: 1,
       sleeping: false,
@@ -37,6 +38,9 @@ export default class Timer extends React.Component {
   }
   fractionize(seconds) {
     return seconds / 300 * 100;
+  }
+  inProgress() {
+    return this.state.timer < 300 && this.state.running;
   }
   onBegin() {
     if (this.state.running) {
@@ -65,7 +69,9 @@ export default class Timer extends React.Component {
   }
   render() {
     let beginOrResume = this.state.timer < 300 ? 'Resume' : 'Begin Day';
+    let inProgress = this.inProgress();
     let blink = this.state.timer === 0 ? 'blink' : '';
+    
     const wellStyles = {
       display: 'block',
       margin: '30px auto 0',
@@ -94,8 +100,7 @@ export default class Timer extends React.Component {
                 </h1>
                 <ProgressBar
                   striped
-                  // TODO: Handle custom timers over 5 minutes
-                  active={this.state.timer < 300 && this.state.running}
+                  active={inProgress}
                   bsStyle='danger'
                   now={this.fractionize(this.state.timer)}/>
               </div>
