@@ -15,15 +15,15 @@ function select(state) {
 export default class Counters extends React.Component {
 	render() {
 		return (
-			<div>
-				<Connector select={select}>
-					{({ day, dispatch }) =>
+			<Connector select={select}>
+				{({ day, dispatch }) =>
+					<div>
 						<Day day={day}
 							{...bindActionCreators(Actions, dispatch)}/>
-					}
-				</Connector>
-				<Timer/>
-			</div>
+						<Timer/>
+					</div>
+				}
+			</Connector>
 		);
 	}
 }

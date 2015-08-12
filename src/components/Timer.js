@@ -9,6 +9,7 @@ import {
   Label,
   ButtonToolbar,
   Button,
+  Input,
   ProgressBar
 } from 'react-bootstrap';
 
@@ -54,12 +55,12 @@ export default class Timer extends React.Component {
     });
   }
   setCustomTime() {
-    let customSeconds = React.findDOMNode(this.refs.customTime).value * 60;
+    let customSeconds = this.refs.customTime.getValue() * 60;
     let customTimer = this.timeLeft(customSeconds);
-    if (moment(customTimer, "MM:SS", true).isValid()) {
+    if (moment(customTimer, 'MM:SS', true).isValid()) {
       this.setState({timer: customSeconds});
     } else {
-      // TODO: Error handling
+      // TODO: Handle bad input
     }
   }
   render() {
@@ -70,6 +71,13 @@ export default class Timer extends React.Component {
       margin: '30px auto 0',
       height: '400'
     };
+
+    const setCustomTimeButton = (
+      <Button onClick={this.setCustomTime}>
+        Set
+      </Button>
+    );
+
     return (
       <Grid>
         <Row className='show-grid'>
@@ -77,7 +85,7 @@ export default class Timer extends React.Component {
             <Well style={wellStyles}>
               <div className='vcenter'>
                 <h1 className='timer'>
-                  Time remaining 
+                  Time remaining
                   <Label className='label-timer'>
                     <span className={blink}>
                       {this.timeLeft(this.state.timer)}
@@ -86,6 +94,7 @@ export default class Timer extends React.Component {
                 </h1>
                 <ProgressBar
                   striped
+                  // TODO: Handle custom timers over 5 minutes
                   active={this.state.timer < 300 && this.state.running}
                   bsStyle='danger'
                   now={this.fractionize(this.state.timer)}/>
@@ -103,6 +112,13 @@ export default class Timer extends React.Component {
                   block>
                   {this.state.running ? 'Pause' : beginOrResume}
                 </Button>
+                <Input
+                  className='set-time'
+                  type='text'
+                  ref='customTime'
+                  bsSize='small'
+                  placeholder='minutes'
+                  buttonBefore={setCustomTimeButton}/>
                 <Button
                   bsStyle='danger'
                   bsSize='small'
@@ -111,21 +127,6 @@ export default class Timer extends React.Component {
                   block>
                   Reset
                 </Button>
-                <div className="input-group">
-                  <span className="input-group-btn">
-                    <button
-                      onClick={this.setCustomTime}
-                      className="btn btn-default"
-                      type="button">
-                      Set
-                    </button>
-                  </span>
-                  <input
-                    type='text'
-                    ref='customTime'
-                    placeholder='minutes'
-                    className="form-control"/>
-                </div>
               </ButtonToolbar>
             </Well>
           </Col>
