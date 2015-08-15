@@ -11,7 +11,12 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<Provider redux={redux}>
-				{() => <Counters/>}
+				{
+					() =>
+					<div>
+						<Counters/>
+					</div>
+				}
 			</Provider>
 		);
 	}

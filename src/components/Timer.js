@@ -13,6 +13,8 @@ import {
   ProgressBar
 } from 'react-bootstrap';
 
+import MessageModal from '../components/message-modal';
+
 export default class Timer extends React.Component {
   constructor(props) {
     super(props);
@@ -21,12 +23,14 @@ export default class Timer extends React.Component {
       timer: 300,
       day: 1,
       sleeping: false,
-      running: false
+      running: false,
+      messagePlayers: false
     };
     this.onBegin = this.onBegin.bind(this);
     this.countdown = this.countdown.bind(this);
     this.reset = this.reset.bind(this);
     this.setCustomTime = this.setCustomTime.bind(this);
+    this.toggleMessagePlayers = this.toggleMessagePlayers.bind(this);
   }
   countdown() {
     if (this.state.timer > 0 && this.state.running) {
@@ -67,10 +71,14 @@ export default class Timer extends React.Component {
       // TODO: Handle bad input
     }
   }
+  toggleMessagePlayers() {
+    this.setState({messagePlayers: !this.state.messagePlayers});
+  }
   render() {
     let beginOrResume = this.state.timer < 300 ? 'Resume' : 'Begin Day';
     let inProgress = this.inProgress();
     let blink = this.state.timer === 0 ? 'blink' : '';
+    let messagePlayers = this.state.messagePlayers && !this.state.running;
     
     const wellStyles = {
       display: 'block',
@@ -83,7 +91,7 @@ export default class Timer extends React.Component {
         Set
       </Button>
     );
-
+console.log(!this.state.running, this.state.messagePlayers)
     return (
       <Grid>
         <Row className='show-grid'>
@@ -94,7 +102,7 @@ export default class Timer extends React.Component {
                   Time remaining
                   <Label className='label-timer'>
                     <span className={blink}>
-                      {this.timeLeft(this.state.timer)}
+                      {messagePlayers ? <MessageModal/> : this.timeLeft(this.state.timer)}
                     </span>
                   </Label>
                 </h1>
@@ -131,6 +139,14 @@ export default class Timer extends React.Component {
                   placement={'right'}
                   block>
                   Reset
+                </Button>
+                <Button
+                  bsStyle='primary'
+                  bsSize='large'
+                  onClick={this.toggleMessagePlayers}
+                  placement={'right'}
+                  block>
+                  Message
                 </Button>
               </ButtonToolbar>
             </Well>
